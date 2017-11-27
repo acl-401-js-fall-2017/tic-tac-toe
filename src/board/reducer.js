@@ -1,22 +1,28 @@
-import default from "../App";
-
+import * as actions from './constants';
 
 const initialState = {
   moves:[],
-  turn: 'P1',
   record:[]
 };
 
-
-
 export default function game(state = initialState, { type, payload }) {
   switch (type) {
-    case 'ADD_MOVE':
+    case actions.ADD_MOVE:
       return{
         ...state,
         moves: [ ...state.moves, payload]
-          }
-      default:
-        return state;
+      };
+    case actions.ADD_RECCORD:
+      return{
+        ...state,
+        record: [...state.record, payload]
+      };
+    case actions.CLEAR_BOARD:
+      return{
+        ...state,
+        moves: []
+      };
+    default:
+      return state;
   }
 }
