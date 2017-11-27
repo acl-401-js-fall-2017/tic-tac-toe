@@ -8,7 +8,6 @@ const initialState = {
 export default function game(state = initialState, { type, payload }) {
   switch (type) {
     case actions.ADD_MOVE:
-      console.log('changing store');
       return{
         ...state,
         moves: [ ...state.moves, payload]
