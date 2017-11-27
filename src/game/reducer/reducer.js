@@ -7,17 +7,14 @@ const emptyBoard = [ ['','',''],
 
 export function board(state = emptyBoard, { type, payload }) {
   let modRow = null;
+  let newState = [];
   switch(type) {
     case actions.MOVE:
-      modRow = state.slice(payload.row, payload.row+1);
-      return [
-        ...state.slice(0, payload.row),
-        ...modRow.slice(0, payload.column).concat(
-          payload.player,
-          modRow.slice(payload.column)
-        ),
-        ...state.slice(payload.row)
-      ];
+      newState[0] = [...state[0]];
+      newState[1] = [...state[1]];
+      newState[2] = [...state[2]];
+      newState[payload.row][payload.column] = payload.player;
+      return newState;
     case actions.GAME_WON:
       return emptyBoard;
     default:

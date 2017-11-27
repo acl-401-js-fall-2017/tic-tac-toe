@@ -5,7 +5,7 @@ import { registerPlayer, move } from './actions';
 class TicTacToe extends PureComponent {
 
   componentDidMount(){
-    console.log(this.props);
+
     const { move } = this.props;
     move(0,0);
     move(0,1);
@@ -16,16 +16,13 @@ class TicTacToe extends PureComponent {
       <div>
         <h1>TicTacToe</h1>
         <table>
-          {board.map((row, r) => {
-            console.log(row);
-            row.map((col, c) => (
-              <td key={c}>{col}</td>
-            ));
-            return (
-              <tr key={r}>
-              </tr>
-            );
-          })}
+          {board.map((row, r) => (
+            <tr key={r}>
+              {row.map((col, c) => (
+                <td key={c}>{col}</td>
+              ))}
+            </tr>
+          ))}
         </table>
       </div>
     );
