@@ -26,3 +26,13 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.board {
+  width: 30%;
+  height: 30%;
+  border: 2px solid;
+}
+
+td {
+  border: 2px solid;
+}
