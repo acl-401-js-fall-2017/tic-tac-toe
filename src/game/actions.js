@@ -32,7 +32,7 @@ export function takeTurn(index) {
 const gameWon = (board) => {
   console.log('we are checking win for board:', board);
   console.log( board[0] === board[1] && board[0] === board[2]);
-  switch(board) {
+  switch(true) {
   case board[0] === board[1] && board[0] === board[2] :{
     console.log('win at first row');
     return true;
