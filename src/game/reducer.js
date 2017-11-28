@@ -33,7 +33,7 @@ export function finished(state = '', { type, payload }) {
   switch(type) {
   case actions.WIN_GAME: {
     console.log('we are hitting reducer win game');
-    return (payload === 'X')? 'PlayerX': 'PlayerO';
+    return payload;
   }
   case actions.TIE_GAME:
     console.log('we are hitting a tie in reducer');

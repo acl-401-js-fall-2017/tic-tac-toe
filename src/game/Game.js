@@ -44,7 +44,6 @@ height: 500px;
 display: grid;
 grid-template-columns: repeat(3, 33%);
 grid-template-rows: repeat(3, 33%);
-border: 1px solid black;
 `;
 
 function mapStateToProps(state) {
