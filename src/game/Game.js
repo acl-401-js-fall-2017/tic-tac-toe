@@ -9,11 +9,18 @@ class Game extends PureComponent {
     this.props.takeTurn(index);
   }
 
-  render(){
-    
+  handleFinish = finished =>{
+    console.log(finished);
+  }
 
+  // componentWillReceiveProps(){
+  //   if(this.props.state.finished) this.handleFinish(this.props.state.finished);
+  // }
+
+  render(){
     return (
       <div>
+        <h1>{this.props.state.finished}</h1>
         <StyledDiv>
           { 
             this.props.state.board.map((square, i) => {

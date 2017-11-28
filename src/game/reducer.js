@@ -29,11 +29,15 @@ export function turn(state = 'PlayerX', { type, payload }) {
   }
 }
 
-export function finished(state = false, { type, payload }) {
+export function finished(state = '', { type, payload }) {
   switch(type) {
-  case actions.WIN_GAME:
+  case actions.WIN_GAME: {
+    console.log('we are hitting reducer win game');
+    return (payload === 'X')? 'PlayerX': 'PlayerO';
+  }
   case actions.TIE_GAME:
-    return true;
+    console.log('we are hitting a tie in reducer');
+    return 'Tie';
   default:
     return state;
   }
