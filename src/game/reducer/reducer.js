@@ -6,7 +6,6 @@ const emptyBoard = [ ['','',''],
 
 
 export function board(state = emptyBoard, { type, payload }) {
-  let modRow = null;
   let newState = [];
   switch(type) {
     case actions.MOVE:
