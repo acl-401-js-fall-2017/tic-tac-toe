@@ -53,27 +53,29 @@ export function player(state = newPlayers, { type, payload }) {
       };
     case actions.GAME_WON:
       if(payload.winner === null) {
+        console.log('tie', state);
         return {
           X: {
             ...state.X,
-            ties: state.X.ties++
+            ties: state.X.ties +1
           },
           O: {
             ...state.O,
-            ties: state.O.ties++
+            ties: state.O.ties +1
           }
         };
       }
       else {
         loser = getOtherPlayer(payload.winner);
+        console.log('win', state);
         return {
           [loser]: {
             ...state[loser],
-            losses: state[loser].losses++
+            losses: state[loser].losses +1
           },
           [payload.winner]: {
             ...state[payload.winner],
-            wins: state[payload.winner].wins++
+            wins: state[payload.winner].wins +1
           } 
         };
       }
