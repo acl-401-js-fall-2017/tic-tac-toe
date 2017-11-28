@@ -11,7 +11,7 @@ class TicTacToe extends PureComponent {
   }
 
   render(){
-    const { board, turn: { current: currentTurn, first: firstTurn } } = this.props;
+    const { board, player, turn: { current: currentTurn, first: firstTurn } } = this.props;
     return (
       <div>
         <h1>TicTacToe</h1>
@@ -40,6 +40,26 @@ class TicTacToe extends PureComponent {
           <span>Player {currentTurn}'s turn</span>
           <span>Player {firstTurn}'s advantage</span>
         </h3>
+        <div 
+          className="player-records"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around'
+          }}
+        >
+          <section className="playerX-records">
+            <h4>{player.X.name}</h4>
+            <p>wins: {player.X.wins}</p>
+            <p>losses: {player.X.losses}</p>
+            <p>ties: {player.X.ties}</p>
+          </section>
+          <section className="playerO-records">
+            <h4>{player.O.name}</h4>
+            <p>wins: {player.O.wins}</p>
+            <p>losses: {player.O.losses}</p>
+            <p>ties: {player.O.ties}</p>
+          </section>
+        </div>
       </div>
     );
   }
