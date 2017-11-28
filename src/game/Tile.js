@@ -7,11 +7,13 @@ class Tile extends PureComponent {
       <td
         onClick={() => mark ? null : onMove(row, col)}
         style={{
-          height: '120px',
-          width: '120px',
-          border: 'black solid 1px',
+          height: '100px',
+          width: '100px',
+          border: 'gray 10px',
+          borderStyle: mark ? 'inset' : 'outset',
           background: mark ? 'white' : 'gray',
-          fontSize: '100px',
+          fontSize: '85px',
+          fontWeight: 'bold',
           margin: '5px'
         }}
       >{mark}</td>
