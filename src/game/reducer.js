@@ -2,9 +2,9 @@ import * as actions from './constants';
 
 const getEmptyBoard = () => {
   return [
-    'a','a','a',
-    'a','a','a',
-    'a','a','a'
+    '','','',
+    '','','',
+    '','',''
   ];
 };
 
