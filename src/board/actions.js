@@ -1,9 +1,19 @@
 import * as actions from './constants';
 
 export function addMove(move){
-  return{
-    type: actions.ADD_MOVE,
-    payload: move
+  return (dispatch, getState) => {
+    const { turn } = getState();
+    const play = turn === 'Player1' ? 'X' : 'O'; 
+
+    dispatch({
+      type: actions.ADD_MOVE,
+      payload: move      
+    });
+
+    const { board } = getState();
+
+  
+
   };
 }
 

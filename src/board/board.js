@@ -21,7 +21,7 @@ export class Board extends PureComponent {
         <ul>
           {currentBoard}
         </ul> 
-        <input type="button" value="Clear Board" onClick={() => this.props.clearBoard()}/>
+        <input type="button" value="New Game" onClick={() => this.props.clearBoard()}/>
       </div>
     );
   }
