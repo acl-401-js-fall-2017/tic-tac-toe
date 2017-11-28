@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import game from './board/reducer';
+import rootReducer from './board/rootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -10,12 +10,12 @@ const logger = store => next => action => {
 };
 
 const store = createStore(
-  game,
+  rootReducer,
   composeEnhancers(
     applyMiddleware(logger, thunk)
   )
 );
-
+console.log('current state', store.getState());
 store.subscribe(()=> console.log('store updated to: ', store.getState()));
 
 export default store;

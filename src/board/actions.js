@@ -7,12 +7,14 @@ export function addMove(move){
 
     dispatch({
       type: actions.ADD_MOVE,
-      payload: move      
+      payload: {
+        move, 
+        play
+      }     
     });
 
-    const { board } = getState();
+    const { game } = getState();
 
-  
 
   };
 }

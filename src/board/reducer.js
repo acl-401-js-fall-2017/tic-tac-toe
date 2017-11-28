@@ -1,20 +1,21 @@
 import * as actions from './constants';
 
+
 const newGameBoard = () => [
   '_', '_', '_',
   '_', '_', '_',
   '_', '_', '_'
 ];
-const initialState = {
-  moves: newGameBoard(),
-  record:[]
-};
+
 
 export function game(state = newGameBoard(), { type, payload }) {
   switch(type) {
     case actions.ADD_MOVE: {
-      const { index, play } = payload;
-      return state.map((square, i) => i === index ? play : square);
+      const { move, play } = payload;
+      return state.map((square, i) => i === move ? play : square);
+    }
+    case actions.CLEAR_BOARD:{
+      return newGameBoard();
     }
     default:
       return state;
@@ -30,6 +31,8 @@ export function turn(state = 'Player1', { type, payload }) {
       return state;
   }
 }
+
+
 
 export function finished(state = false, { type, payload }) {
   switch(type) {
