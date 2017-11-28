@@ -9,7 +9,7 @@ export function addMove(move){
 
 export function addRecord(result){
   return{
-    type: actions.ADD_RECCORD,
+    type: actions.ADD_RECORD,
     payload: result
   };
 }

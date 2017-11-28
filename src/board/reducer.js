@@ -1,7 +1,11 @@
 import * as actions from './constants';
 
 const initialState = {
-  moves:[],
+  moves:[
+    '_', '_', '_',
+    '_', '_', '_',
+    '_', '_', '_'
+  ],
   record:[]
 };
 
@@ -12,7 +16,7 @@ export default function game(state = initialState, { type, payload }) {
         ...state,
         moves: [ ...state.moves, payload]
       };
-    case actions.ADD_RECCORD:
+    case actions.ADD_RECORD:
       return{
         ...state,
         record: [...state.record, payload]
