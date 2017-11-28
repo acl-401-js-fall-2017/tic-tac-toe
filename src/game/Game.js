@@ -1,30 +1,25 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { initGame } from './actions';
+import { takeTurn } from './actions';
 import { connect } from 'react-redux'; 
 
 class Game extends PureComponent {
 
-  componentDidMount(state) {
-    console.log('we just mounted');
-    const board = [ ['b', 'X', 'b'], [ 'b', 'b', 'b'], ['b', 'b', 'b'] ];
-    this.props.initGame({ board, turn:'PlayerX', finished: false }) ;
+  handleTurn = index => {
+    this.props.takeTurn(index);
   }
 
   render(){
+    
 
     return (
       <div>
         <StyledDiv>
           { 
-            this.props.game.map(game => {
-              return game.board.map(column => {
-                return column.map(block =>{
-                  return <div key={block} style={{ border: '1px solid black' }}>{block}</div>;
-                });
-              });
-            })
-          }
+            this.props.state.board.map((square, i) => {
+              return <div key={i} onClick={() => this.handleTurn(i)} style={{ border: '1px solid black' }}>{square}</div>;
+            }
+            )}
         </StyledDiv>
       </div>
     );
@@ -47,10 +42,11 @@ border: 1px solid black;
 
 function mapStateToProps(state) {
   return {
-    game: state
+    state: state
   };
 }
+
 export default connect(
   mapStateToProps,
-  { initGame }
+  { takeTurn }
 )(Game);
