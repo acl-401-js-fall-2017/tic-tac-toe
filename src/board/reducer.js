@@ -30,9 +30,10 @@ export function turn(state = 'player1', { type, payload }) {
   }
 }
 
-export function finished(state = false, { type, payload }) {
+export function record(state = [], { type, payload }) {
   switch(type) {
-    case actions.WIN_GAME:
+    case actions.ADD_RECORD:
+      return [ ...state, payload];
     case actions.CAT_GAME: 
       return true; //todo: more game logic
     default:

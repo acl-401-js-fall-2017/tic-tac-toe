@@ -57,15 +57,19 @@ export function takeTurn(position){
     });
 
     
-    if(winDetectedPLayer1.includes(true)) console.log('player1 won!');
-    if(winDetectedPLayer2.includes(true)) console.log('player2 won!');
-  };
-}
-
-export function addRecord(result){
-  return{
-    type: actions.ADD_RECORD,
-    payload: result
+    if(winDetectedPLayer1.includes(true)) {
+      dispatch({
+        type: actions.ADD_RECORD,
+        payload: 'player1'
+      });
+    }
+    
+    if(winDetectedPLayer2.includes(true)) {
+      dispatch({
+        type: actions.ADD_RECORD,
+        payload: 'player2'
+      });
+    }
   };
 }
 

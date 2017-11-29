@@ -48,5 +48,5 @@ class Board extends PureComponent {
 
 export default connect(
   state => ({ gameLog: state.game, record: state.record }),
-  { takeTurn, addRecord, clearBoard }
+  { takeTurn, clearBoard }
 )(Board);
