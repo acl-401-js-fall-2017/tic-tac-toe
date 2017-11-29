@@ -1,28 +1,43 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addMove, addRecord, clearBoard } from './actions';
+import { takeTurn, addRecord, clearBoard } from './actions';
 
 
-export class Board extends PureComponent {
+class Board extends PureComponent {
   
-  handleChoice = function(choice){
-    console.log('move', choice);
-    const result = this.props.addMove(choice);
-    console.log('I am result', result);
-
+  handleChoice = choice => {
+    this.props.takeTurn(choice);
   }
 
   render(){
-    const { moves, addMove } = this.props;
-    const currentBoard = moves.map((square, i) => {
-      const item = <li style={{ backgroundColor: 'white' }}key={i} onClick={(square === '_') ? () => this.handleChoice(i): null}><h1>{square}</h1></li>;
-      return item; 
+    const { gameLog } = this.props;
+
+    const currentBoard = gameLog.map((square, i) => {
+      return( 
+        <li style={{ backgroundColor: 'white' }}key={i} 
+          onClick={(square === '') ? () => this.handleChoice(i): null}>
+          <h1>{square}</h1>
+        </li>
+      );
     });
-    console.log('current board', currentBoard);  
+
+    console.log('current board', currentBoard);
+
+    const boardStyle = { 
+      padding: '0px',
+      backgroundColor: 'black',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      listStyle: 'none',
+      height: '50vh', 
+      width: '50vw',
+      gridGap: '5px'
+    };
+
 
     return(
       <div>
-        <ul style={{ padding: '0px', backgroundColor: 'red', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', listStyle: 'none', height: '50vh', width: '50vw', gridGap: '5px' }}>
+        <ul style={boardStyle}>
           {currentBoard}
         </ul> 
         <input type="button" value="New Game" onClick={() => this.props.clearBoard()}/>
@@ -32,6 +47,6 @@ export class Board extends PureComponent {
 }
 
 export default connect(
-  state => ({ moves: state.game, record: state.record }),
-  { addMove, addRecord, clearBoard }
+  state => ({ gameLog: state.game, record: state.record }),
+  { takeTurn, addRecord, clearBoard }
 )(Board);

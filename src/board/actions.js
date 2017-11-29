@@ -1,21 +1,19 @@
 import * as actions from './constants';
 
-export function addMove(move){
+export function takeTurn(position){
   return (dispatch, getState) => {
     const { turn } = getState();
     const play = turn === 'Player1' ? 'X' : 'O'; 
 
     dispatch({
-      type: actions.ADD_MOVE,
+      type: actions.TAKE_TURN,
       payload: {
-        move, 
+        position,
         play
       }     
     });
-
-    const { game } = getState();
-
-
+    //Add win and lose conditions
+    //const { game } = getState();
   };
 }
 

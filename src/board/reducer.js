@@ -1,18 +1,16 @@
 import * as actions from './constants';
 
-
 const newGameBoard = () => [
-  '_', '_', '_',
-  '_', '_', '_',
-  '_', '_', '_'
+  '', '', '',
+  '', '', '',
+  '', '', ''
 ];
-
 
 export function game(state = newGameBoard(), { type, payload }) {
   switch(type) {
-    case actions.ADD_MOVE: {
-      const { move, play } = payload;
-      return state.map((square, i) => i === move ? play : square);
+    case actions.TAKE_TURN: {
+      const { position, play } = payload;
+      return state.map((square, i) => i === position ? play : square);
     }
     case actions.CLEAR_BOARD:{
       return newGameBoard();
@@ -24,15 +22,13 @@ export function game(state = newGameBoard(), { type, payload }) {
 
 export function turn(state = 'Player1', { type, payload }) {
   switch(type) {
-    case actions.ADD_MOVE: {
+    case actions.TAKE_TURN: {
       return state === 'Player1' ? 'Player2' : 'Player1';
     }
     default:
       return state;
   }
 }
-
-
 
 export function finished(state = false, { type, payload }) {
   switch(type) {
@@ -43,25 +39,3 @@ export function finished(state = false, { type, payload }) {
       return state;
   }
 }
-
-// export default function game(state = initialState, { type, payload }) {
-//   switch (type) {
-//     case actions.ADD_MOVE:
-//       return{
-//         ...state,
-//         moves: [ ...state.moves, payload]
-//       };
-//     case actions.ADD_RECORD:
-//       return{
-//         ...state,
-//         record: [...state.record, payload]
-//       };
-//     case actions.CLEAR_BOARD:
-//       return{
-//         ...state,
-//         moves: newGameBoard()
-//       };
-//     default:
-//       return state;
-//   }
-// }
