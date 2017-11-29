@@ -38,33 +38,26 @@ export function takeTurn(position){
       }     
     });
 
-    const winDetectedPLayer1 = winConditons.map(combination => {
-      const checkWin = combination.map(element => {
-        return gameLog.player1.includes(element);
+    function winDetector(array){ 
+      const checkAllCombinations = winConditons.map(combination => {
+        const checkWin = combination.map(element => {
+          return array.includes(element);
+        });
+        return checkWin.every(checkResult => {
+          return checkResult === true;
+        }); 
       });
-      return checkWin.every(checkResult => {
-        return checkResult === true;
-      }); 
-    });
+      return checkAllCombinations.includes(true);
+    }
 
-    const winDetectedPLayer2 = winConditons.map(combination => {
-      const checkWin = combination.map(element => {
-        return gameLog.player2.includes(element);
-      });
-      return checkWin.every(checkResult => {
-        return checkResult === true;
-      }); 
-    });
-
-    
-    if(winDetectedPLayer1.includes(true)) {
+    if(winDetector(gameLog.player1)) {
       dispatch({
         type: actions.ADD_RECORD,
         payload: 'player1'
       });
     }
     
-    if(winDetectedPLayer2.includes(true)) {
+    if(winDetector(gameLog.player2)) {
       dispatch({
         type: actions.ADD_RECORD,
         payload: 'player2'
