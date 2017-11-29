@@ -20,10 +20,10 @@ export function game(state = newGameBoard(), { type, payload }) {
   }
 }
 
-export function turn(state = 'Player1', { type, payload }) {
+export function turn(state = 'player1', { type, payload }) {
   switch(type) {
     case actions.TAKE_TURN: {
-      return state === 'Player1' ? 'Player2' : 'Player1';
+      return state === 'player1' ? 'player2' : 'player1';
     }
     default:
       return state;

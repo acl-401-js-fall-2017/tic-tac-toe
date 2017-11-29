@@ -15,7 +15,7 @@ const store = createStore(
     applyMiddleware(logger, thunk)
   )
 );
-console.log('current state', store.getState());
+
 store.subscribe(()=> console.log('store updated to: ', store.getState()));
 
 export default store;
