@@ -10,7 +10,7 @@ class Board extends PureComponent {
   }
 
   render(){
-    const { gameLog } = this.props;
+    const { gameLog, record } = this.props;
 
     const currentBoard = gameLog.map((square, i) => {
       return( 
@@ -34,6 +34,15 @@ class Board extends PureComponent {
       gridGap: '5px'
     };
 
+    let player1wins = 0;
+    let player2wins = 0;
+    let tieGames = 0;
+    record.forEach(result => {
+      if(result === 'player1') player1wins += 1;
+      if(result === 'player2') player2wins += 1; 
+      if(result === 'TIE') tieGames += 1; 
+    });
+
 
     return(
       <div>
@@ -41,6 +50,9 @@ class Board extends PureComponent {
           {currentBoard}
         </ul> 
         <input type="button" value="New Game" onClick={() => this.props.clearBoard()}/>
+        <h4>player1 wins: { player1wins }</h4>
+        <h4>player2 wins: { player2wins }</h4>
+        <h4>Tie games: { tieGames }</h4>
       </div>
     );
   }

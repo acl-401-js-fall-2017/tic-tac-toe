@@ -29,6 +29,7 @@ export function takeTurn(position){
     });
 
     gameLog[turn].push(position);
+    
 
     dispatch({
       type: actions.TAKE_TURN,
@@ -50,17 +51,43 @@ export function takeTurn(position){
       return checkAllCombinations.includes(true);
     }
 
+    function catsDetector(){
+      const count = gameLog.player1.length + gameLog.player2.length;
+      const catsGame = count === 9;
+      return catsGame;
+    }
+
     if(winDetector(gameLog.player1)) {
       dispatch({
         type: actions.ADD_RECORD,
         payload: 'player1'
       });
+
+      
+      dispatch({
+        type: actions.CLEAR_BOARD,
+      });
+      
     }
     
     if(winDetector(gameLog.player2)) {
       dispatch({
         type: actions.ADD_RECORD,
         payload: 'player2'
+      });
+      dispatch({
+        type: actions.CLEAR_BOARD,
+      }); 
+    }
+
+    if(catsDetector(gameLog)) {
+      dispatch({
+        type: actions.ADD_RECORD,
+        payload: 'TIE'
+      });
+
+      dispatch({
+        type: actions.CLEAR_BOARD,
       });
     }
   };
